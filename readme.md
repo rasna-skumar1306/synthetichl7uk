@@ -35,7 +35,7 @@ graph TD
     PAS -->|HL7 V2.3| Volume[(Volume: /data)]
     Volume -->|2. Ingest| Engine[🤖 Integration Engine]
     Engine -->|FHIR R4B| Volume
-    Orchestrator -->|3. Inject (Optional)| Chaos[🔥 Chaos Engine]
+    Orchestrator -->|3. Inject Chaos| Chaos[🔥 Chaos Engine]
     Chaos -->|Corrupt Data| Volume
     Orchestrator -->|4. Audit| Sentinel[🛡️ Sentinel Auditor]
     Sentinel -->|Log Update| DB[(Audit Log JSON)]
