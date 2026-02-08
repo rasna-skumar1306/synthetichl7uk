@@ -1,0 +1,59 @@
+{
+  "resourceType": "Bundle",
+  "type": "transaction",
+  "entry": [
+    {
+      "resource": {
+        "resourceType": "Patient",
+        "id": "1886668086",
+        "identifier": [
+          {
+            "system": "https://fhir.nhs.uk/nhs-number",
+            "value": "1886668086"
+          }
+        ],
+        "name": [
+          {
+            "family": "MILLER",
+            "given": [
+              "Graeme"
+            ]
+          }
+        ],
+        "telecom": [
+          {
+            "system": "phone",
+            "value": "01214960199",
+            "use": "home"
+          }
+        ],
+        "gender": "male",
+        "birthDate": "1988-01-08"
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "8867-4",
+              "display": "Heart rate"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Patient/1886668086"
+        },
+        "effectiveDateTime": "2026-02-08T16:37:32Z",
+        "valueQuantity": {
+          "value": 73,
+          "unit": "beats/minute",
+          "code": "/min"
+        }
+      }
+    }
+  ]
+}

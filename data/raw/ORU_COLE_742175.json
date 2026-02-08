@@ -1,0 +1,86 @@
+{
+  "resourceType": "Bundle",
+  "type": "transaction",
+  "entry": [
+    {
+      "resource": {
+        "resourceType": "Patient",
+        "id": "4241572731",
+        "identifier": [
+          {
+            "system": "https://fhir.nhs.uk/nhs-number",
+            "value": "4241572731"
+          }
+        ],
+        "name": [
+          {
+            "family": "COLE",
+            "given": [
+              "Lydia"
+            ]
+          }
+        ],
+        "telecom": [
+          {
+            "system": "phone",
+            "value": "+441134960087",
+            "use": "home"
+          }
+        ],
+        "gender": "other",
+        "birthDate": "1962-10-04"
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "85354-9",
+              "display": "Blood pressure panel"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Patient/4241572731"
+        },
+        "effectiveDateTime": "2026-02-08T16:37:41Z",
+        "component": [
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "8480-6",
+                  "display": "Systolic"
+                }
+              ]
+            },
+            "valueQuantity": {
+              "value": 133.0,
+              "unit": "mmHg"
+            }
+          },
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "8462-4",
+                  "display": "Diastolic"
+                }
+              ]
+            },
+            "valueQuantity": {
+              "value": 105.0,
+              "unit": "mmHg"
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

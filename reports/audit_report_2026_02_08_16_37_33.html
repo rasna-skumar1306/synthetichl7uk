@@ -1,0 +1,53 @@
+
+    <html>
+    <head>
+        <style>
+            body { font-family: sans-serif; padding: 20px; background: #f4f4f9; }
+            h1 { color: #2c3e50; }
+            .card { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); margin-bottom: 20px; }
+            .stats { display: flex; gap: 20px; }
+            .stat-box { flex: 1; text-align: center; padding: 20px; background: #ecf0f1; border-radius: 8px; }
+            .valid { background: #d4edda; color: #155724; }
+            .invalid { background: #f8d7da; color: #721c24; }
+            table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+            th, td { text-align: left; padding: 12px; border-bottom: 1px solid #ddd; }
+            th { background-color: #2c3e50; color: white; }
+            tr:hover { background-color: #f1f1f1; }
+        </style>
+    </head>
+    <body>
+        <h1>🛡️ NHS Data Quality Audit Report</h1>
+        <p>Generated: 2026-02-08 16:37:33</p>
+        
+        <div class="card stats">
+            <div class="stat-box valid">
+                <h2>25</h2>
+                <p>Accepted Records</p>
+            </div>
+            <div class="stat-box invalid">
+                <h2>7</h2>
+                <p>Rejected Records</p>
+            </div>
+            <div class="stat-box">
+                <h2>78%</h2>
+                <p>Quality Score</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>🚫 Rejection Log</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Filename</th>
+                        <th>Reason</th>
+                    </tr>
+                </thead>
+                <tbody>
+    <tr><td>ORU_GRIFFITHS_276364.json</td><td>Invalid Unit for Heart Rate: kg</td></tr><tr><td>ORU_HUNTER_464645.json</td><td>Invalid Unit for Heart Rate: kg</td></tr><tr><td>ORU_LITTLE_340298.json</td><td>Clinically Impossible Heart Rate: 999</td></tr><tr><td>ORU_NEWMAN_762837.json</td><td>Timestamp is in the future: 2027-02-08T16:37:33.221160</td></tr><tr><td>ORU_STANLEY_249001.json</td><td>Clinically Impossible Systolic: 999</td></tr><tr><td>ORU_WILLIAMS_279820.json</td><td>Timestamp is in the future: 2027-02-08T16:37:33.246709</td></tr><tr><td>ORU_WILLIAMS_401115.json</td><td>Timestamp is in the future: 2027-02-08T16:37:33.252221</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </body>
+    </html>
+    

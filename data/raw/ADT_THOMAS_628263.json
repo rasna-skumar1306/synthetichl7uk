@@ -1,0 +1,54 @@
+{
+  "resourceType": "Bundle",
+  "type": "transaction",
+  "entry": [
+    {
+      "resource": {
+        "resourceType": "Patient",
+        "id": "3695622474",
+        "identifier": [
+          {
+            "system": "https://fhir.nhs.uk/nhs-number",
+            "value": "3695622474"
+          }
+        ],
+        "name": [
+          {
+            "family": "THOMAS",
+            "given": [
+              "Adrian"
+            ]
+          }
+        ],
+        "telecom": [
+          {
+            "system": "phone",
+            "value": "01144960735",
+            "use": "home"
+          }
+        ],
+        "gender": "other",
+        "birthDate": "1960-10-30"
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Encounter",
+        "status": "in-progress",
+        "class": {
+          "system": "http://terminology.hl7.org/CodeSystem/v3-ActCode",
+          "code": "E",
+          "display": "Emergency"
+        },
+        "type": [
+          {
+            "text": "Location: ICU-4-1"
+          }
+        ],
+        "subject": {
+          "reference": "Patient/3695622474"
+        }
+      }
+    }
+  ]
+}

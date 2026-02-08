@@ -1,0 +1,108 @@
+{
+  "resourceType": "Bundle",
+  "type": "transaction",
+  "entry": [
+    {
+      "resource": {
+        "resourceType": "Patient",
+        "id": "0038842858",
+        "identifier": [
+          {
+            "system": "https://fhir.nhs.uk/nhs-number",
+            "value": "0038842858"
+          }
+        ],
+        "name": [
+          {
+            "family": "KNOWLES",
+            "given": [
+              "Toby"
+            ]
+          }
+        ],
+        "telecom": [
+          {
+            "system": "phone",
+            "value": "01314960446",
+            "use": "home"
+          }
+        ],
+        "gender": "male",
+        "birthDate": "2005-07-09"
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Encounter",
+        "status": "in-progress",
+        "class": {
+          "system": "http://terminology.hl7.org/CodeSystem/v3-ActCode",
+          "code": "O",
+          "display": "Emergency"
+        },
+        "type": [
+          {
+            "text": "Location: CARDIO-15-2"
+          }
+        ],
+        "subject": {
+          "reference": "Patient/0038842858"
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "AllergyIntolerance",
+        "clinicalStatus": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/allergyintolerance-clinical",
+              "code": "active"
+            }
+          ]
+        },
+        "verificationStatus": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/allergyintolerance-verification",
+              "code": "confirmed"
+            }
+          ]
+        },
+        "type": "allergy",
+        "category": [
+          "medication"
+        ],
+        "criticality": "low",
+        "code": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/sid/icd-10",
+              "code": "Z88.0",
+              "display": "PENICILLIN"
+            }
+          ]
+        },
+        "patient": {
+          "reference": "Patient/0038842858"
+        },
+        "reaction": [
+          {
+            "manifestation": [
+              {
+                "coding": [
+                  {
+                    "system": "http://snomed.info/sct",
+                    "display": "Wheezing"
+                  }
+                ],
+                "text": "Wheezing"
+              }
+            ],
+            "severity": "moderate"
+          }
+        ]
+      }
+    }
+  ]
+}

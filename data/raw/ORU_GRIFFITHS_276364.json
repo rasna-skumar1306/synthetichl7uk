@@ -1,0 +1,59 @@
+{
+  "resourceType": "Bundle",
+  "type": "transaction",
+  "entry": [
+    {
+      "resource": {
+        "resourceType": "Patient",
+        "id": "3852902940",
+        "identifier": [
+          {
+            "system": "https://fhir.nhs.uk/nhs-number",
+            "value": "3852902940"
+          }
+        ],
+        "name": [
+          {
+            "family": "GRIFFITHS",
+            "given": [
+              "Joe"
+            ]
+          }
+        ],
+        "telecom": [
+          {
+            "system": "phone",
+            "value": "01144960065",
+            "use": "home"
+          }
+        ],
+        "gender": "male",
+        "birthDate": "2007-12-21"
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "8867-4",
+              "display": "Heart rate"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Patient/3852902940"
+        },
+        "effectiveDateTime": "2026-02-08T16:37:32Z",
+        "valueQuantity": {
+          "value": 68,
+          "unit": "beats/minute",
+          "code": "/min"
+        }
+      }
+    }
+  ]
+}

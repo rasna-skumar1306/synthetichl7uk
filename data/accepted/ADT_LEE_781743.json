@@ -1,0 +1,108 @@
+{
+  "resourceType": "Bundle",
+  "type": "transaction",
+  "entry": [
+    {
+      "resource": {
+        "resourceType": "Patient",
+        "id": "0916637573",
+        "identifier": [
+          {
+            "system": "https://fhir.nhs.uk/nhs-number",
+            "value": "0916637573"
+          }
+        ],
+        "name": [
+          {
+            "family": "LEE",
+            "given": [
+              "Leah"
+            ]
+          }
+        ],
+        "telecom": [
+          {
+            "system": "phone",
+            "value": "01414960629",
+            "use": "home"
+          }
+        ],
+        "gender": "other",
+        "birthDate": "1963-05-25"
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Encounter",
+        "status": "in-progress",
+        "class": {
+          "system": "http://terminology.hl7.org/CodeSystem/v3-ActCode",
+          "code": "E",
+          "display": "Emergency"
+        },
+        "type": [
+          {
+            "text": "Location: ICU-18-4"
+          }
+        ],
+        "subject": {
+          "reference": "Patient/0916637573"
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "AllergyIntolerance",
+        "clinicalStatus": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/allergyintolerance-clinical",
+              "code": "active"
+            }
+          ]
+        },
+        "verificationStatus": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/allergyintolerance-verification",
+              "code": "confirmed"
+            }
+          ]
+        },
+        "type": "allergy",
+        "category": [
+          "food"
+        ],
+        "criticality": "high",
+        "code": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/sid/icd-10",
+              "code": "Z91.04",
+              "display": "LATEX"
+            }
+          ]
+        },
+        "patient": {
+          "reference": "Patient/0916637573"
+        },
+        "reaction": [
+          {
+            "manifestation": [
+              {
+                "coding": [
+                  {
+                    "system": "http://snomed.info/sct",
+                    "display": "Nausea"
+                  }
+                ],
+                "text": "Nausea"
+              }
+            ],
+            "severity": "severe"
+          }
+        ]
+      }
+    }
+  ]
+}

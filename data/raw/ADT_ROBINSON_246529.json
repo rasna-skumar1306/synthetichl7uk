@@ -1,0 +1,54 @@
+{
+  "resourceType": "Bundle",
+  "type": "transaction",
+  "entry": [
+    {
+      "resource": {
+        "resourceType": "Patient",
+        "id": "0736965661",
+        "identifier": [
+          {
+            "system": "https://fhir.nhs.uk/nhs-number",
+            "value": "0736965661"
+          }
+        ],
+        "name": [
+          {
+            "family": "ROBINSON",
+            "given": [
+              "Irene"
+            ]
+          }
+        ],
+        "telecom": [
+          {
+            "system": "phone",
+            "value": "01214960313",
+            "use": "home"
+          }
+        ],
+        "gender": "other",
+        "birthDate": "1994-05-22"
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Encounter",
+        "status": "in-progress",
+        "class": {
+          "system": "http://terminology.hl7.org/CodeSystem/v3-ActCode",
+          "code": "I",
+          "display": "Inpatient"
+        },
+        "type": [
+          {
+            "text": "Location: GEN_MED-7-4"
+          }
+        ],
+        "subject": {
+          "reference": "Patient/0736965661"
+        }
+      }
+    }
+  ]
+}

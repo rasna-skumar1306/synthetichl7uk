@@ -1,0 +1,108 @@
+{
+  "resourceType": "Bundle",
+  "type": "transaction",
+  "entry": [
+    {
+      "resource": {
+        "resourceType": "Patient",
+        "id": "6953190442",
+        "identifier": [
+          {
+            "system": "https://fhir.nhs.uk/nhs-number",
+            "value": "6953190442"
+          }
+        ],
+        "name": [
+          {
+            "family": "BARKER",
+            "given": [
+              "Jenna"
+            ]
+          }
+        ],
+        "telecom": [
+          {
+            "system": "phone",
+            "value": "01414960029",
+            "use": "home"
+          }
+        ],
+        "gender": "female",
+        "birthDate": "1971-04-27"
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Encounter",
+        "status": "in-progress",
+        "class": {
+          "system": "http://terminology.hl7.org/CodeSystem/v3-ActCode",
+          "code": "E",
+          "display": "Emergency"
+        },
+        "type": [
+          {
+            "text": "Location: ICU-13-2"
+          }
+        ],
+        "subject": {
+          "reference": "Patient/6953190442"
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "AllergyIntolerance",
+        "clinicalStatus": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/allergyintolerance-clinical",
+              "code": "active"
+            }
+          ]
+        },
+        "verificationStatus": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/allergyintolerance-verification",
+              "code": "confirmed"
+            }
+          ]
+        },
+        "type": "allergy",
+        "category": [
+          "medication"
+        ],
+        "criticality": "high",
+        "code": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/sid/icd-10",
+              "code": "Z88.0",
+              "display": "PENICILLIN"
+            }
+          ]
+        },
+        "patient": {
+          "reference": "Patient/6953190442"
+        },
+        "reaction": [
+          {
+            "manifestation": [
+              {
+                "coding": [
+                  {
+                    "system": "http://snomed.info/sct",
+                    "display": "Hives"
+                  }
+                ],
+                "text": "Hives"
+              }
+            ],
+            "severity": "severe"
+          }
+        ]
+      }
+    }
+  ]
+}

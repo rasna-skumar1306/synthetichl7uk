@@ -1,0 +1,59 @@
+{
+  "resourceType": "Bundle",
+  "type": "transaction",
+  "entry": [
+    {
+      "resource": {
+        "resourceType": "Patient",
+        "id": "7708762693",
+        "identifier": [
+          {
+            "system": "https://fhir.nhs.uk/nhs-number",
+            "value": "7708762693"
+          }
+        ],
+        "name": [
+          {
+            "family": "LITTLE",
+            "given": [
+              "Lynn"
+            ]
+          }
+        ],
+        "telecom": [
+          {
+            "system": "phone",
+            "value": "+449098790986",
+            "use": "home"
+          }
+        ],
+        "gender": "female",
+        "birthDate": "1972-05-15"
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "8867-4",
+              "display": "Heart rate"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Patient/7708762693"
+        },
+        "effectiveDateTime": "2026-02-08T16:37:32Z",
+        "valueQuantity": {
+          "value": 80,
+          "unit": "beats/minute",
+          "code": "/min"
+        }
+      }
+    }
+  ]
+}

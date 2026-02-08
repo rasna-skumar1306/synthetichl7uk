@@ -1,0 +1,54 @@
+{
+  "resourceType": "Bundle",
+  "type": "transaction",
+  "entry": [
+    {
+      "resource": {
+        "resourceType": "Patient",
+        "id": "4545988652",
+        "identifier": [
+          {
+            "system": "https://fhir.nhs.uk/nhs-number",
+            "value": "4545988652"
+          }
+        ],
+        "name": [
+          {
+            "family": "HUGHES",
+            "given": [
+              "Shannon"
+            ]
+          }
+        ],
+        "telecom": [
+          {
+            "system": "phone",
+            "value": "+441914960232",
+            "use": "home"
+          }
+        ],
+        "gender": "other",
+        "birthDate": "1979-10-11"
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Encounter",
+        "status": "in-progress",
+        "class": {
+          "system": "http://terminology.hl7.org/CodeSystem/v3-ActCode",
+          "code": "E",
+          "display": "Emergency"
+        },
+        "type": [
+          {
+            "text": "Location: GEN_MED-13-4"
+          }
+        ],
+        "subject": {
+          "reference": "Patient/4545988652"
+        }
+      }
+    }
+  ]
+}

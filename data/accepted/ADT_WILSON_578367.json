@@ -1,0 +1,108 @@
+{
+  "resourceType": "Bundle",
+  "type": "transaction",
+  "entry": [
+    {
+      "resource": {
+        "resourceType": "Patient",
+        "id": "6383292455",
+        "identifier": [
+          {
+            "system": "https://fhir.nhs.uk/nhs-number",
+            "value": "6383292455"
+          }
+        ],
+        "name": [
+          {
+            "family": "WILSON",
+            "given": [
+              "Katherine"
+            ]
+          }
+        ],
+        "telecom": [
+          {
+            "system": "phone",
+            "value": "+4401414960466",
+            "use": "home"
+          }
+        ],
+        "gender": "female",
+        "birthDate": "1936-10-09"
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Encounter",
+        "status": "in-progress",
+        "class": {
+          "system": "http://terminology.hl7.org/CodeSystem/v3-ActCode",
+          "code": "E",
+          "display": "Emergency"
+        },
+        "type": [
+          {
+            "text": "Location: GEN_MED-13-4"
+          }
+        ],
+        "subject": {
+          "reference": "Patient/6383292455"
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "AllergyIntolerance",
+        "clinicalStatus": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/allergyintolerance-clinical",
+              "code": "active"
+            }
+          ]
+        },
+        "verificationStatus": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/allergyintolerance-verification",
+              "code": "confirmed"
+            }
+          ]
+        },
+        "type": "allergy",
+        "category": [
+          "food"
+        ],
+        "criticality": "low",
+        "code": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/sid/icd-10",
+              "code": "Y45.1",
+              "display": "ASPIRIN"
+            }
+          ]
+        },
+        "patient": {
+          "reference": "Patient/6383292455"
+        },
+        "reaction": [
+          {
+            "manifestation": [
+              {
+                "coding": [
+                  {
+                    "system": "http://snomed.info/sct",
+                    "display": "Hives"
+                  }
+                ],
+                "text": "Hives"
+              }
+            ],
+            "severity": "moderate"
+          }
+        ]
+      }
+    }
+  ]
+}

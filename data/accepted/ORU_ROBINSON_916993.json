@@ -1,0 +1,59 @@
+{
+  "resourceType": "Bundle",
+  "type": "transaction",
+  "entry": [
+    {
+      "resource": {
+        "resourceType": "Patient",
+        "id": "0832376817",
+        "identifier": [
+          {
+            "system": "https://fhir.nhs.uk/nhs-number",
+            "value": "0832376817"
+          }
+        ],
+        "name": [
+          {
+            "family": "ROBINSON",
+            "given": [
+              "Mohammed"
+            ]
+          }
+        ],
+        "telecom": [
+          {
+            "system": "phone",
+            "value": "+4401914960846",
+            "use": "home"
+          }
+        ],
+        "gender": "other",
+        "birthDate": "1980-11-28"
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "8867-4",
+              "display": "Heart rate"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Patient/0832376817"
+        },
+        "effectiveDateTime": "2026-02-08T16:37:41Z",
+        "valueQuantity": {
+          "value": 84,
+          "unit": "beats/minute",
+          "code": "/min"
+        }
+      }
+    }
+  ]
+}

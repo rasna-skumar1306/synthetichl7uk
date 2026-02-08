@@ -1,0 +1,54 @@
+{
+  "resourceType": "Bundle",
+  "type": "transaction",
+  "entry": [
+    {
+      "resource": {
+        "resourceType": "Patient",
+        "id": "2997244161",
+        "identifier": [
+          {
+            "system": "https://fhir.nhs.uk/nhs-number",
+            "value": "2997244161"
+          }
+        ],
+        "name": [
+          {
+            "family": "SMITH",
+            "given": [
+              "Allan"
+            ]
+          }
+        ],
+        "telecom": [
+          {
+            "system": "phone",
+            "value": "+448081570874",
+            "use": "home"
+          }
+        ],
+        "gender": "other",
+        "birthDate": "1971-12-13"
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Encounter",
+        "status": "in-progress",
+        "class": {
+          "system": "http://terminology.hl7.org/CodeSystem/v3-ActCode",
+          "code": "I",
+          "display": "Inpatient"
+        },
+        "type": [
+          {
+            "text": "Location: GEN_MED-12-2"
+          }
+        ],
+        "subject": {
+          "reference": "Patient/2997244161"
+        }
+      }
+    }
+  ]
+}

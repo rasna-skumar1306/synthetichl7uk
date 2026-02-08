@@ -1,0 +1,108 @@
+{
+  "resourceType": "Bundle",
+  "type": "transaction",
+  "entry": [
+    {
+      "resource": {
+        "resourceType": "Patient",
+        "id": "3614341623",
+        "identifier": [
+          {
+            "system": "https://fhir.nhs.uk/nhs-number",
+            "value": "3614341623"
+          }
+        ],
+        "name": [
+          {
+            "family": "BARBER",
+            "given": [
+              "Terry"
+            ]
+          }
+        ],
+        "telecom": [
+          {
+            "system": "phone",
+            "value": "+441914960092",
+            "use": "home"
+          }
+        ],
+        "gender": "male",
+        "birthDate": "1960-03-06"
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Encounter",
+        "status": "in-progress",
+        "class": {
+          "system": "http://terminology.hl7.org/CodeSystem/v3-ActCode",
+          "code": "O",
+          "display": "Emergency"
+        },
+        "type": [
+          {
+            "text": "Location: CARDIO-5-4"
+          }
+        ],
+        "subject": {
+          "reference": "Patient/3614341623"
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "AllergyIntolerance",
+        "clinicalStatus": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/allergyintolerance-clinical",
+              "code": "active"
+            }
+          ]
+        },
+        "verificationStatus": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/allergyintolerance-verification",
+              "code": "confirmed"
+            }
+          ]
+        },
+        "type": "allergy",
+        "category": [
+          "food"
+        ],
+        "criticality": "high",
+        "code": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/sid/icd-10",
+              "code": "Y45.1",
+              "display": "ASPIRIN"
+            }
+          ]
+        },
+        "patient": {
+          "reference": "Patient/3614341623"
+        },
+        "reaction": [
+          {
+            "manifestation": [
+              {
+                "coding": [
+                  {
+                    "system": "http://snomed.info/sct",
+                    "display": "Wheezing"
+                  }
+                ],
+                "text": "Wheezing"
+              }
+            ],
+            "severity": "severe"
+          }
+        ]
+      }
+    }
+  ]
+}

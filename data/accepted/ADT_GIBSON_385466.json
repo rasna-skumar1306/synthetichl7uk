@@ -1,0 +1,54 @@
+{
+  "resourceType": "Bundle",
+  "type": "transaction",
+  "entry": [
+    {
+      "resource": {
+        "resourceType": "Patient",
+        "id": "3403308596",
+        "identifier": [
+          {
+            "system": "https://fhir.nhs.uk/nhs-number",
+            "value": "3403308596"
+          }
+        ],
+        "name": [
+          {
+            "family": "GIBSON",
+            "given": [
+              "Brian"
+            ]
+          }
+        ],
+        "telecom": [
+          {
+            "system": "phone",
+            "value": "+4401314960752",
+            "use": "home"
+          }
+        ],
+        "gender": "male",
+        "birthDate": "1970-08-18"
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Encounter",
+        "status": "in-progress",
+        "class": {
+          "system": "http://terminology.hl7.org/CodeSystem/v3-ActCode",
+          "code": "E",
+          "display": "Emergency"
+        },
+        "type": [
+          {
+            "text": "Location: ICU-6-2"
+          }
+        ],
+        "subject": {
+          "reference": "Patient/3403308596"
+        }
+      }
+    }
+  ]
+}

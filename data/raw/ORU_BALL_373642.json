@@ -1,0 +1,59 @@
+{
+  "resourceType": "Bundle",
+  "type": "transaction",
+  "entry": [
+    {
+      "resource": {
+        "resourceType": "Patient",
+        "id": "8354875768",
+        "identifier": [
+          {
+            "system": "https://fhir.nhs.uk/nhs-number",
+            "value": "8354875768"
+          }
+        ],
+        "name": [
+          {
+            "family": "BALL",
+            "given": [
+              "Steven"
+            ]
+          }
+        ],
+        "telecom": [
+          {
+            "system": "phone",
+            "value": "01154960709",
+            "use": "home"
+          }
+        ],
+        "gender": "male",
+        "birthDate": "1992-09-24"
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "8867-4",
+              "display": "Heart rate"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Patient/8354875768"
+        },
+        "effectiveDateTime": "2026-02-08T16:37:41Z",
+        "valueQuantity": {
+          "value": 99,
+          "unit": "beats/minute",
+          "code": "/min"
+        }
+      }
+    }
+  ]
+}

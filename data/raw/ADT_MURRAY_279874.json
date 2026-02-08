@@ -1,0 +1,54 @@
+{
+  "resourceType": "Bundle",
+  "type": "transaction",
+  "entry": [
+    {
+      "resource": {
+        "resourceType": "Patient",
+        "id": "2292221837",
+        "identifier": [
+          {
+            "system": "https://fhir.nhs.uk/nhs-number",
+            "value": "2292221837"
+          }
+        ],
+        "name": [
+          {
+            "family": "MURRAY",
+            "given": [
+              "Lesley"
+            ]
+          }
+        ],
+        "telecom": [
+          {
+            "system": "phone",
+            "value": "01632960703",
+            "use": "home"
+          }
+        ],
+        "gender": "female",
+        "birthDate": "1976-01-21"
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Encounter",
+        "status": "in-progress",
+        "class": {
+          "system": "http://terminology.hl7.org/CodeSystem/v3-ActCode",
+          "code": "E",
+          "display": "Emergency"
+        },
+        "type": [
+          {
+            "text": "Location: GEN_MED-19-2"
+          }
+        ],
+        "subject": {
+          "reference": "Patient/2292221837"
+        }
+      }
+    }
+  ]
+}

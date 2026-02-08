@@ -1,0 +1,59 @@
+{
+  "resourceType": "Bundle",
+  "type": "transaction",
+  "entry": [
+    {
+      "resource": {
+        "resourceType": "Patient",
+        "id": "8643272388",
+        "identifier": [
+          {
+            "system": "https://fhir.nhs.uk/nhs-number",
+            "value": "9999999999"
+          }
+        ],
+        "name": [
+          {
+            "family": "WILLIAMS",
+            "given": [
+              "Leonard"
+            ]
+          }
+        ],
+        "telecom": [
+          {
+            "system": "phone",
+            "value": "01144960890",
+            "use": "home"
+          }
+        ],
+        "gender": "male",
+        "birthDate": "1945-02-25"
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "8867-4",
+              "display": "Heart rate"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Patient/8643272388"
+        },
+        "effectiveDateTime": "2027-02-08T16:37:33.246709",
+        "valueQuantity": {
+          "value": 70,
+          "unit": "beats/minute",
+          "code": "/min"
+        }
+      }
+    }
+  ]
+}

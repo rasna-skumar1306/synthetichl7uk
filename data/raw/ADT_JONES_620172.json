@@ -1,0 +1,54 @@
+{
+  "resourceType": "Bundle",
+  "type": "transaction",
+  "entry": [
+    {
+      "resource": {
+        "resourceType": "Patient",
+        "id": "6445680178",
+        "identifier": [
+          {
+            "system": "https://fhir.nhs.uk/nhs-number",
+            "value": "6445680178"
+          }
+        ],
+        "name": [
+          {
+            "family": "JONES",
+            "given": [
+              "Sian"
+            ]
+          }
+        ],
+        "telecom": [
+          {
+            "system": "phone",
+            "value": "+4401614960413",
+            "use": "home"
+          }
+        ],
+        "gender": "female",
+        "birthDate": "1996-05-18"
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Encounter",
+        "status": "in-progress",
+        "class": {
+          "system": "http://terminology.hl7.org/CodeSystem/v3-ActCode",
+          "code": "E",
+          "display": "Emergency"
+        },
+        "type": [
+          {
+            "text": "Location: GEN_MED-9-3"
+          }
+        ],
+        "subject": {
+          "reference": "Patient/6445680178"
+        }
+      }
+    }
+  ]
+}

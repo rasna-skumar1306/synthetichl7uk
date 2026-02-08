@@ -1,0 +1,54 @@
+{
+  "resourceType": "Bundle",
+  "type": "transaction",
+  "entry": [
+    {
+      "resource": {
+        "resourceType": "Patient",
+        "id": "0735419167",
+        "identifier": [
+          {
+            "system": "https://fhir.nhs.uk/nhs-number",
+            "value": "0735419167"
+          }
+        ],
+        "name": [
+          {
+            "family": "SMITH",
+            "given": [
+              "Wayne"
+            ]
+          }
+        ],
+        "telecom": [
+          {
+            "system": "phone",
+            "value": "+4402920180869",
+            "use": "home"
+          }
+        ],
+        "gender": "male",
+        "birthDate": "2004-12-11"
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Encounter",
+        "status": "in-progress",
+        "class": {
+          "system": "http://terminology.hl7.org/CodeSystem/v3-ActCode",
+          "code": "E",
+          "display": "Emergency"
+        },
+        "type": [
+          {
+            "text": "Location: A&E-19-1"
+          }
+        ],
+        "subject": {
+          "reference": "Patient/0735419167"
+        }
+      }
+    }
+  ]
+}

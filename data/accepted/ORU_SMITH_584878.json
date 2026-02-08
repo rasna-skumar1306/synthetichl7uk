@@ -1,0 +1,59 @@
+{
+  "resourceType": "Bundle",
+  "type": "transaction",
+  "entry": [
+    {
+      "resource": {
+        "resourceType": "Patient",
+        "id": "8085763508",
+        "identifier": [
+          {
+            "system": "https://fhir.nhs.uk/nhs-number",
+            "value": "8085763508"
+          }
+        ],
+        "name": [
+          {
+            "family": "SMITH",
+            "given": [
+              "Emily"
+            ]
+          }
+        ],
+        "telecom": [
+          {
+            "system": "phone",
+            "value": "+4402890180109",
+            "use": "home"
+          }
+        ],
+        "gender": "female",
+        "birthDate": "1974-11-06"
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "8867-4",
+              "display": "Heart rate"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Patient/8085763508"
+        },
+        "effectiveDateTime": "2026-02-08T16:37:32Z",
+        "valueQuantity": {
+          "value": 100,
+          "unit": "beats/minute",
+          "code": "/min"
+        }
+      }
+    }
+  ]
+}

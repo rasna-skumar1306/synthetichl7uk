@@ -1,0 +1,59 @@
+{
+  "resourceType": "Bundle",
+  "type": "transaction",
+  "entry": [
+    {
+      "resource": {
+        "resourceType": "Patient",
+        "id": "1669539768",
+        "identifier": [
+          {
+            "system": "https://fhir.nhs.uk/nhs-number",
+            "value": "1669539768"
+          }
+        ],
+        "name": [
+          {
+            "family": "MATTHEWS",
+            "given": [
+              "Amanda"
+            ]
+          }
+        ],
+        "telecom": [
+          {
+            "system": "phone",
+            "value": "+441184960089",
+            "use": "home"
+          }
+        ],
+        "gender": "other",
+        "birthDate": "1988-07-01"
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "8867-4",
+              "display": "Heart rate"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Patient/1669539768"
+        },
+        "effectiveDateTime": "2026-02-08T16:37:32Z",
+        "valueQuantity": {
+          "value": 67,
+          "unit": "beats/minute",
+          "code": "/min"
+        }
+      }
+    }
+  ]
+}
