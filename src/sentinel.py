@@ -49,6 +49,21 @@ def validate_patient(data):
             datetime.strptime(dob, "%Y-%m-%d")
         except ValueError:
             errors.append(f"Invalid Date Format: {dob}")
+    
+    # Rule 3: Mandatory Family Name (Admin Check)
+    try:
+        # Safely try to get the first name entry
+        names = data.get('name', [])
+        if not names:
+            errors.append("Missing Name Record")
+        else:
+            # Check the official/first name record
+            family_name = names[0].get('family', '')
+            if not family_name:
+                errors.append("Missing Family Name (Surname)")
+                
+    except (IndexError, AttributeError):
+        errors.append("Corrupt Name Structure")
             
     return errors
 
@@ -280,6 +295,52 @@ def run_sentinel():
             error_msg = ", ".join(file_errors)
             rejection_log.append((filename, error_msg)) 
             print(f"🚫 REJECTED {filename}: {error_msg}")
+
+    # --- DYNAMIC LOGGING LOGIC ---
+    log_path = "data/rejection_log.json"
+    
+    # 1. Load History (Dictionary: Filename -> Data)
+    history_log = {}
+    if os.path.exists(log_path):
+        try:
+            with open(log_path, "r") as f:
+                # Map back to dict for easy lookup
+                history_log = {entry['Filename']: entry for entry in json.load(f)}
+        except json.JSONDecodeError:
+            history_log = {}
+
+    # 2. Process CURRENT Failures (Mark as Active)
+    current_failures = set()
+    for fname, reason in rejection_log:
+        current_failures.add(fname)
+        
+        # Add or Update the record
+        history_log[fname] = {
+            "Timestamp": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+            "Filename": fname,
+            "Error Type": reason,
+            "Status": "🔴 Active"
+        }
+
+    # 3. Process RESOLVED Issues
+    # If it's in history but NOT in current failures, it means it's fixed!
+    for fname in history_log:
+        if fname not in current_failures:
+            # Only update if it was previously Active
+            if history_log[fname]["Status"] == "🔴 Active":
+                history_log[fname]["Status"] = "✅ Resolved"
+                history_log[fname]["Timestamp"] = datetime.now().strftime("%Y-%m-%d %H:%M:%S") # Update time to show WHEN it was fixed
+                print(f"✅ Issue Resolved: {fname}")
+
+    # 4. Save Audit Trail
+    # Convert dict to list and sort: Active first, then by time
+    final_list = list(history_log.values())
+    final_list.sort(key=lambda x: (x['Status'], x['Timestamp']), reverse=True)
+
+    with open(log_path, "w") as f:
+        json.dump(final_list, f, indent=2)
+
+    print(f"💾 Audit Trail updated. Total Records: {len(final_list)}")
 
     generate_html_report(stats, rejection_log)
     print("\n--- 📊 Sentinel Report ---")
