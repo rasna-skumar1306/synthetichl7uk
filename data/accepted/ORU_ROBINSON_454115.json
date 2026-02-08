@@ -1,0 +1,86 @@
+{
+  "resourceType": "Bundle",
+  "type": "transaction",
+  "entry": [
+    {
+      "resource": {
+        "resourceType": "Patient",
+        "id": "6619822800",
+        "identifier": [
+          {
+            "system": "https://fhir.nhs.uk/nhs-number",
+            "value": "6619822800"
+          }
+        ],
+        "name": [
+          {
+            "family": "ROBINSON",
+            "given": [
+              "Carole"
+            ]
+          }
+        ],
+        "telecom": [
+          {
+            "system": "phone",
+            "value": "08081570530",
+            "use": "home"
+          }
+        ],
+        "gender": "female",
+        "birthDate": "1982-09-24"
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "85354-9",
+              "display": "Blood pressure panel"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Patient/6619822800"
+        },
+        "effectiveDateTime": "2026-02-08T02:38:17Z",
+        "component": [
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "8480-6",
+                  "display": "Systolic"
+                }
+              ]
+            },
+            "valueQuantity": {
+              "value": 139.0,
+              "unit": "mmHg"
+            }
+          },
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "8462-4",
+                  "display": "Diastolic"
+                }
+              ]
+            },
+            "valueQuantity": {
+              "value": 69.0,
+              "unit": "mmHg"
+            }
+          }
+        ]
+      }
+    }
+  ]
+}
