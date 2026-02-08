@@ -1,2 +1,5 @@
 faker
 fhir.resources
+streamlit
+pandas
+plotly

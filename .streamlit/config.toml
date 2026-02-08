@@ -1,0 +1,6 @@
+[theme]
+primaryColor = "#005EB8"   # NHS Blue
+backgroundColor = "#FFFFFF"
+secondaryBackgroundColor = "#F0F4F5" # NHS Light Grey
+textColor = "#212b32"
+font = "sans serif"

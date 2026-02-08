@@ -1,33 +1,50 @@
 version: '3.8'
 
 services:
-  # service 1: The Legacy Hospital Systems (Generates HL7 Data)
-  pas-simulator:
+  # The Dashboard Service (Generates HL7 Data -> Transforms it to FHIR -> Check for Data Sanity -> Generate Report)
+  nhs-dashboard:
     build: .
     image: synthetichl7uk
+    container_name: nhs_integration_dashboard_ui
+    ports:
+      - "8501:8501"
     volumes:
       - ./data:/app/data
-    environment:
-      - BATCH_SIZE=15
-    command: python src/legacy_feed.py
-
-  # service 2: The Integration Engine (Receives HL7 and converts to FHIR)
-  integration-engine:
-    image: synthetichl7uk
-    volumes:
-      - ./data:/app/data
-    command: python src/forge.py
-    depends_on:
-      pas-simulator:
-        condition: service_completed_successfully
-
-  # service 3: The Gatekeeper (A sentinel program validates the data)
-  data-sentinel:
-    image: synthetichl7uk
-    volumes:
-      - ./data:/app/data
+      - ./src:/app/src
       - ./reports:/app/reports
-    command: python src/sentinel.py
-    depends_on:
-      integration-engine:
-        condition: service_completed_successfully
+      - ./.streamlit:/app/.streamlit
+    command: streamlit run src/dashboard.py --server.address=0.0.0.0
+    environment:
+      - PYTHONBUFFERED=1
+
+# services:
+#   # service 1: The Legacy Hospital Systems (Generates HL7 Data)
+#   pas-simulator:
+#     build: .
+#     image: synthetichl7uk
+#     volumes:
+#       - ./data:/app/data
+#     environment:
+#       - BATCH_SIZE=15
+#     command: python src/legacy_feed.py
+
+#   # service 2: The Integration Engine (Receives HL7 and converts to FHIR)
+#   integration-engine:
+#     image: synthetichl7uk
+#     volumes:
+#       - ./data:/app/data
+#     command: python src/forge.py
+#     depends_on:
+#       pas-simulator:
+#         condition: service_completed_successfully
+
+#   # service 3: The Gatekeeper (A sentinel program validates the data)
+#   data-sentinel:
+#     image: synthetichl7uk
+#     volumes:
+#       - ./data:/app/data
+#       - ./reports:/app/reports
+#     command: python src/sentinel.py
+#     depends_on:
+#       integration-engine:
+#         condition: service_completed_successfully
