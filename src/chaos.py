@@ -5,11 +5,35 @@ import glob
 from copy import deepcopy
 from datetime import datetime, timedelta
 
-INPUT_DIR = "data/raw"
-OUTPUT_DIR = "data/dirty"
+# --- Configuration ---
+
+INPUT_DIR = os.getenv("CHAOS_TARGET_DIR", "data/raw")
 ERROR_RATE = 0.4
 
-# --- New Clinical Chaos Functions ---
+# 1. ADMINISTRATIVE CHAOS (Targets: Patient)
+
+def error_admin_corrupt_nhs_number(resource):
+    """Scenario: Typo in NHS Number (fails Mod11 check)."""
+    if resource.get('resourceType') == 'Patient':
+        for identifier in resource.get('identifier', []):
+            if 'nhs-number' in identifier.get('system', ''):
+                # Change the last digit to break the checksum
+                original = identifier['value']
+                # specific breakdown: 9999999999 is definitely invalid
+                identifier['value'] = "9999999999" 
+                return resource, "INVALID_NHS_NUMBER"
+    return resource, "SKIPPED"
+
+def error_admin_missing_name(resource):
+    """Scenario: Clerk forgot to enter the surname."""
+    if resource.get('resourceType') == 'Patient':
+        if 'name' in resource and len(resource['name']) > 0:
+            # Remove family name
+            resource['name'][0]['family'] = "" 
+            return resource, "MISSING_SURNAME"
+    return resource, "SKIPPED"
+
+# 2. CLINICAL CHAOS (Targets: Observation)
 
 def error_clinical_impossible_value(resource):
     """Scenario: Device malfunction (Heart Rate 999 or BP 999/999)."""
@@ -19,7 +43,7 @@ def error_clinical_impossible_value(resource):
         resource['valueQuantity']['value'] = 999
         return resource, "CRITICAL_VALUE_IMPOSSIBLE"
         
-    # 2. Attack Nested Components (Blood Pressure) <--- NEW
+    # 2. Attack Nested Components (Blood Pressure)
     if 'component' in resource:
         for comp in resource['component']:
             if 'valueQuantity' in comp:
@@ -50,27 +74,26 @@ def error_clinical_unit_mismatch(resource):
 
         if 'component' in resource:
             for comp in resource['component']:
-                if 'valueQuantity' in resource:
+                if 'valueQuantity' in comp:
                     # Change Heart Rate units from 'beats/minute' to 'kg' (Nonsense)
-                    resource['valueQuantity']['unit'] = "kg"
-                    resource['valueQuantity']['code'] = "kg"
+                    comp['valueQuantity']['unit'] = "kg"
+                    comp['valueQuantity']['code'] = "kg"
                     return resource, "UNIT_MISMATCH"
 
     return resource, "SKIPPED"
 
 # --- The Master List ---
-CHAOS_FUNCTIONS = [
-    error_clinical_impossible_value,
-    error_clinical_future_timestamp,
-    error_clinical_unit_mismatch
-]
+CHAOS_MENUS = {
+    "Patient": [error_admin_corrupt_nhs_number, error_admin_missing_name],
+    "Observation": [error_clinical_impossible_value, error_clinical_future_timestamp, error_clinical_unit_mismatch]
+}
 
 def run_chaos():
-    os.makedirs(OUTPUT_DIR, exist_ok=True)
     files = glob.glob(f"{INPUT_DIR}/*.json")
-    stats = {"dirty": 0}
+    stats = {"scanned": len(files), "infected": 0}
 
-    print(f"🔥 Starting Clinical Chaos Engine...")
+    print(f"🔥 CHAOS ENGINE ONLINE. Targeting: {INPUT_DIR}")
+    print(f"🎲 Infection Rate: {ERROR_RATE * 100}%")
 
     for file_path in files:
         with open(file_path, 'r') as f:
@@ -82,31 +105,27 @@ def run_chaos():
         if data.get('resourceType') == 'Bundle':
             for entry in data.get('entry', []):
                 resource = entry.get('resource', {})
-
-                if resource.get('resourceType') == 'Observation' and random.random() < ERROR_RATE:
-
-                    chaos_func = random.choice(CHAOS_FUNCTIONS)
-                    dirty_data, error_code = chaos_func(deepcopy(resource))
-                    
-                    if error_code != "SKIPPED":
-                        filename = os.path.basename(file_path)
-                        entry['resource'] = dirty_data
-                        file_is_corrupted = True
-                        error_report.append(error_code)
-                    
-                    if file_is_corrupted:
-                        filename = os.path.basename(file_path)
-
-                        combined_code = "_".join(set(error_report))
-                        new_filename = f"CORRUPT_{combined_code}_{filename}"
-
-                        with open(os.path.join(OUTPUT_DIR, new_filename), "w") as f:
-                            json.dump(data, f, indent=2)
+                r_type = resource.get('resourceType')
+                if r_type in CHAOS_MENUS:
+                    if random.random() < ERROR_RATE:
+                        chaos_func = random.choice(CHAOS_MENUS[r_type])
+                        dirty_data, error_code = chaos_func(deepcopy(resource))
                         
-                        print(f"❌ Injured Bundle: {combined_code}")
-                        stats["dirty"] += 1
+                        if error_code != "SKIPPED":
+                            entry['resource'] = dirty_data
+                            file_is_corrupted = True
+                            error_report.append(error_code)
+                    
+            if file_is_corrupted:
+                with open(file_path, "w") as f:
+                    json.dump(data, f, indent=2)
+                
+                stats["infected"] += 1
+                unique_errors = list(set(error_report))
+                print(f"   💀 Infected {os.path.basename(file_path)} -> {unique_errors}")
 
-    print(f"💀 Total Clinical Errors Injected: {stats['dirty']}")
+    print(f"----------------------------------------")
+    print(f"📉 Chaos Report: Infected {stats['infected']} out of {stats['scanned']} files.")
 
 if __name__ == "__main__":
     run_chaos()
